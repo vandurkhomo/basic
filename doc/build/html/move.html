@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>move module &mdash; DJ-TT_basic 0.20 文档</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/translations.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> DJ-TT_basic
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">move module</a></li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">DJ-TT_basic</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">move module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/move.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-move">
+<span id="move-module"></span><h1>move module<a class="headerlink" href="#module-move" title="Permalink to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="move.KeyBoard">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">move.</span></span><span class="sig-name descname"><span class="pre">KeyBoard</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">father</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#move.KeyBoard" title="永久链接至目标"></a></dt>
+<dd><p>基类：<code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="simple">
+<dt>键盘捕获</dt><dd><p>用keyboard.Listener实现（自带多线程）
+在MoveControl.keyboard_listen（）被调用（keyboard_listen有阻塞）</p>
+</dd>
+</dl>
+<p>由于self.father直接传入了MoveControl的实例对象，因此可以直接调用传入对象的方法</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="move.KeyBoard.key_in">
+<span class="sig-name descname"><span class="pre">key_in</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#move.KeyBoard.key_in" title="永久链接至目标"></a></dt>
+<dd><p>keyboard.Listener 的 on_press回调函数，按键摁下触发</p>
+<p>修改该函数可以自定义键盘流控制飞机行为</p>
+<dl class="simple">
+<dt>目前行为：</dt><dd><dl class="simple">
+<dt>key 1:</dt><dd><p>飞行步长增加（20）</p>
+</dd>
+<dt>key 2:</dt><dd><p>飞行步长减少（20）</p>
+</dd>
+<dt>key 3:</dt><dd><p>飞行速度增加（10）</p>
+</dd>
+<dt>key 4:</dt><dd><p>飞行步长减少（10）</p>
+</dd>
+<dt>key up:</dt><dd><p>向前飞</p>
+</dd>
+<dt>key down:</dt><dd><p>向后飞</p>
+</dd>
+<dt>key left:</dt><dd><p>向左飞</p>
+</dd>
+<dt>key right:</dt><dd><p>向右飞</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>key</strong> – 键盘捕获</p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>无</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="move.MoveControl">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">move.</span></span><span class="sig-name descname"><span class="pre">MoveControl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flight</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">speed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#move.MoveControl" title="永久链接至目标"></a></dt>
+<dd><p>基类：<code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>动作控制类
+（没有封装含挑战卡的函数）</p>
+<blockquote>
+<div><dl class="simple">
+<dt>主要是对robot.Drone().flight的封装</dt><dd><p>封装了前后左右上下飞行、停止
+封装了电机的开关
+封装了起飞和降落
+封装了角度旋转
+封装了控制飞机遥控器的四个杆量（ 横滚 俯仰 油门 偏航）
+实现了速度控制，飞行的距离控制
+实现了键盘流控制飞机的功能
+速度获取，角速度获取不在此类中（可能在传感器类中）</p>
+</dd>
+</dl>
+</div></blockquote>
+<dl>
+<dt>参数：</dt><dd><p>self.step  ：每次飞行的步长
+self.move ： robot.Drone().flight的别名</p>
+<blockquote>
+<div><p>（控制同一飞机时传入相同的robot.Drone().flight对象）</p>
+</div></blockquote>
+<p>self.speed ：飞行的速度
+self.keyboard ：KeyBoard键盘捕获类</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="move.MoveControl.flip">
+<span class="sig-name descname"><span class="pre">flip</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">retry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#move.MoveControl.flip" title="永久链接至目标"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>direction</strong> – <dl class="simple">
+<dt>当电量低于50%时无法完成翻滚</dt><dd><p>飞机翻转的方向， ’l‘ 向左翻滚，’r‘ 向右翻滚，’f‘ 向前翻滚， ’b‘ 向后翻滚</p>
+</dd>
+</dl>
+</p></li>
+<li><p><strong>retry</strong> – 是否重发命令</p></li>
+<li><p><strong>timeout</strong> – 等待动作完成最大的时间（启用则有阻塞）</p></li>
+</ul>
+</dd>
+</dl>
+<p>:return:无</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="move.MoveControl.fly">
+<span class="sig-name descname"><span class="pre">fly</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distance</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">retry</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#move.MoveControl.fly" title="永久链接至目标"></a></dt>
+<dd><p>飞行控制（前后左右上下）</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>direction</strong> – 飞行的方向，”forward” 向前飞行， “back” 向后飞行， “up” 向上飞行， “down” 向下飞行， “left” 向左飞行， “right” 向右飞行</p></li>
+<li><p><strong>distance</strong> – [20, 500]，飞行的距离，单位 cm,无则默认为self.step</p></li>
+<li><p><strong>retry</strong> – 是否重发命令</p></li>
+<li><p><strong>timeout</strong> – 等待动作完成最大的时间（启用则有阻塞）</p></li>
+</ul>
+</dd>
+</dl>
+<p>Returns:无</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="move.MoveControl.keyboard_listen">
+<span class="sig-name descname"><span class="pre">keyboard_listen</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#move.MoveControl.keyboard_listen" title="永久链接至目标"></a></dt>
+<dd><dl class="simple">
+<dt>键盘捕获</dt><dd><dl class="simple">
+<dt>有阻塞，实现键盘流控制</dt><dd><p>self.keyboard是类KeyBoard的实例（具体实现见类KeyBoard）</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p>结束后重置监听线程 keyboard.Listener
+:return: 无</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="move.MoveControl.land">
+<span class="sig-name descname"><span class="pre">land</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">retry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#move.MoveControl.land" title="永久链接至目标"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>retry</strong> – 是否重发命令</p></li>
+<li><p><strong>timeout</strong> – 等待动作完成最大的时间（启用则有阻塞）</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>无</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="move.MoveControl.motor_off">
+<span class="sig-name descname"><span class="pre">motor_off</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#move.MoveControl.motor_off" title="永久链接至目标"></a></dt>
+<dd><p>关闭电机</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>timeout</strong> – 等待动作完成最大的时间（启用则有阻塞）</p>
+</dd>
+</dl>
+<p>Returns:无</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="move.MoveControl.motor_on">
+<span class="sig-name descname"><span class="pre">motor_on</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#move.MoveControl.motor_on" title="永久链接至目标"></a></dt>
+<dd><p>开启电机（机身非水平无法开启）</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>timeout</strong> – 等待动作完成最大的时间（启用则有阻塞）</p>
+</dd>
+</dl>
+<p>Returns:无</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="move.MoveControl.rc">
+<span class="sig-name descname"><span class="pre">rc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#move.MoveControl.rc" title="永久链接至目标"></a></dt>
+<dd><p>控制飞机遥控器的四个杆量</p>
+<dl class="simple">
+<dt>参数:</dt><dd><p>a – float:[-100, 100] 横滚
+b – float:[-100, 100] 俯仰
+c – float:[-100, 100] 油门
+d – float:[-100, 100] 偏航</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="move.MoveControl.rotate">
+<span class="sig-name descname"><span class="pre">rotate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">retry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#move.MoveControl.rotate" title="永久链接至目标"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>angle</strong> – [-360, 360] 旋转的角度，俯视飞机时，顺时针为正角度，逆时针为负角度</p></li>
+<li><p><strong>retry</strong> – 是否重发命令</p></li>
+<li><p><strong>timeout</strong> – 等待动作完成最大的时间（启用则有阻塞）</p></li>
+</ul>
+</dd>
+</dl>
+<p>:return:无</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="move.MoveControl.set_step">
+<span class="sig-name descname"><span class="pre">set_step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_step</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#move.MoveControl.set_step" title="永久链接至目标"></a></dt>
+<dd><p>设置新飞行步长
+:param new_step: 设置的新飞行步长
+:return: 无</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="move.MoveControl.speed_">
+<span class="sig-name descname"><span class="pre">speed_</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">speed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#move.MoveControl.speed_" title="永久链接至目标"></a></dt>
+<dd><p>无参数传入:获取当前速度
+有参数传入：修改当前速度</p>
+<dl class="simple">
+<dt>:param</dt><dd><p>speed:[10, 100]</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p>更改后的速度</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="move.MoveControl.stop">
+<span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">retry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#move.MoveControl.stop" title="永久链接至目标"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>retry</strong> – 是否重发命令</p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>bool:控制结果</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="move.MoveControl.takeoff">
+<span class="sig-name descname"><span class="pre">takeoff</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">retry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#move.MoveControl.takeoff" title="永久链接至目标"></a></dt>
+<dd><p>起飞（约40cm）
+:param retry:</p>
+<blockquote>
+<div><p>是否重发命令</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>timeout</strong> – 等待动作完成最大的时间（启用则有阻塞）</p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>无</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2023, vandurkhomo.</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

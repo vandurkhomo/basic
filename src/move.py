@@ -1,8 +1,5 @@
 from robomaster import robot
-import time
 from pynput import keyboard
-import threading
-from threading import Event
 
 
 class MoveControl:
@@ -26,6 +23,7 @@ class MoveControl:
         self.speed ：飞行的速度
         self.keyboard ：KeyBoard键盘捕获类
     """
+
     def __init__(self, flight, speed=10):
         self.step = 100
         self.move = flight
@@ -218,6 +216,7 @@ class KeyBoard:
     由于self.father直接传入了MoveControl的实例对象，因此可以直接调用传入对象的方法
 
     """
+
     def __init__(self, father):
         self.listening = 0
         self.father = father
@@ -281,9 +280,9 @@ if __name__ == '__main__':
     tl_drone = robot.Drone()
     tl_drone.initialize()
     tl_flight = tl_drone.flight
+
     move_ = MoveControl(tl_flight)
     move_.takeoff()
     move_.keyboard_listen()
-
 
 # ERROR action.py:355 Robot is already performing 500 action(s) <action, name:FlightAction, state:action_started
