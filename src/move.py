@@ -6,22 +6,33 @@ class MoveControl:
     """
     动作控制类
     （没有封装含挑战卡的函数）
-        主要是对robot.Drone().flight的封装
+        |主要是对robot.Drone().flight的封装
             封装了前后左右上下飞行、停止
+
             封装了电机的开关
+
             封装了起飞和降落
+
             封装了角度旋转
+
             封装了控制飞机遥控器的四个杆量（ 横滚 俯仰 油门 偏航）
+
             实现了速度控制，飞行的距离控制
+
             实现了键盘流控制飞机的功能
+
             速度获取，角速度获取不在此类中（可能在传感器类中）
 
     参数：
-        self.step  ：每次飞行的步长
-        self.move ： robot.Drone().flight的别名
+     self.step:
+        每次飞行的步长
+     self.move:
+        robot.Drone().flight的别名
             （控制同一飞机时传入相同的robot.Drone().flight对象）
-        self.speed ：飞行的速度
-        self.keyboard ：KeyBoard键盘捕获类
+     self.speed:
+        飞行的速度
+     self.keyboard:
+        KeyBoard键盘捕获类
     """
 
     def __init__(self, flight, speed=10):
@@ -64,9 +75,21 @@ class MoveControl:
 
         Args:
             direction:
-                飞行的方向，”forward” 向前飞行， “back” 向后飞行， “up” 向上飞行， “down” 向下飞行， “left” 向左飞行， “right” 向右飞行
+                 飞行的方向:
+                    ”forward” :
+                        向前飞行
+                    “back” :
+                        向后飞行
+                    “up” :
+                        向上飞行
+                    “down” :
+                        向下飞行
+                    “left” :
+                        向左飞行
+                    “right”:
+                        向右飞行
             distance:
-                [20, 500]，飞行的距离，单位 cm,无则默认为self.step
+                飞行的距离:[20, 500]，单位 cm,无则默认为self.step
             retry:
                 是否重发命令
             timeout:
@@ -85,8 +108,16 @@ class MoveControl:
         """
 
         :param direction:
-            当电量低于50%时无法完成翻滚
-                飞机翻转的方向， ’l‘ 向左翻滚，’r‘ 向右翻滚，’f‘ 向前翻滚， ’b‘ 向后翻滚
+             | 当电量低于50%时无法完成翻滚
+                飞机翻转的方向:
+                 ’l‘ :
+                    向左翻滚
+                 ’r‘ :
+                    向右翻滚
+                 ’f‘:
+                    向前翻滚
+                 ’b‘ :
+                    向后翻滚
         :param retry:
             是否重发命令
         :param timeout:
@@ -114,7 +145,8 @@ class MoveControl:
     def rotate(self, angle: float = 0, retry=True, timeout=0):
         """
         :param angle:
-            [-360, 360] 旋转的角度，俯视飞机时，顺时针为正角度，逆时针为负角度
+            旋转的角度:[-360, 360]
+            俯视飞机时，顺时针为正角度，逆时针为负角度
         :param retry:
             是否重发命令
         :param timeout:
@@ -159,10 +191,14 @@ class MoveControl:
         控制飞机遥控器的四个杆量
 
         参数:
-            a – float:[-100, 100] 横滚
-            b – float:[-100, 100] 俯仰
-            c – float:[-100, 100] 油门
-            d – float:[-100, 100] 偏航
+            a – float:
+                [-100, 100] 横滚
+            b – float:
+                [-100, 100] 俯仰
+            c – float:
+                [-100, 100] 油门
+            d – float:
+                [-100, 100] 偏航
         """
         self.move.rc(a, b, c, d)
 
@@ -183,9 +219,9 @@ class MoveControl:
     def keyboard_listen(self):
         """
         键盘捕获
-            有阻塞，实现键盘流控制
-                self.keyboard是类KeyBoard的实例（具体实现见类KeyBoard）
-        结束后重置监听线程 keyboard.Listener
+             | 有阻塞，实现键盘流控制
+                 | self.keyboard是类KeyBoard的实例（具体实现见类KeyBoard）
+         | 结束后重置监听线程 keyboard.Listener
         :return: 无
         """
         print("up,down,left,right,1,2,3,4 only! "
@@ -211,9 +247,9 @@ class MoveControl:
 class KeyBoard:
     """
     键盘捕获
-        用keyboard.Listener实现（自带多线程）
-        在MoveControl.keyboard_listen（）被调用（keyboard_listen有阻塞）
-    由于self.father直接传入了MoveControl的实例对象，因此可以直接调用传入对象的方法
+         | 用keyboard.Listener实现（自带多线程）
+         | 在MoveControl.keyboard_listen（）被调用（keyboard_listen有阻塞）
+    |由于self.father直接传入了MoveControl的实例对象，因此可以直接调用传入对象的方法
 
     """
 
@@ -226,9 +262,9 @@ class KeyBoard:
 
     def key_in(self, key):
         """
-        keyboard.Listener 的 on_press回调函数，按键摁下触发
+        |keyboard.Listener 的 on_press回调函数，按键摁下触发
 
-        修改该函数可以自定义键盘流控制飞机行为
+        |修改该函数可以自定义键盘流控制飞机行为
 
         目前行为：
             key 1:
